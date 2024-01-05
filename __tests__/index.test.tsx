@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen } from '@testing-library/react';
+import { getByRole, render, screen } from '@testing-library/react';
 import Home from '@/pages/home/index';
 
 describe('Home', () => {
-  it('renders a heading', () => {
+  it('Home renders a heading', () => {
     render(<Home />);
 
     const heading = screen.getByRole('heading', {
@@ -13,5 +13,14 @@ describe('Home', () => {
     });
 
     expect(heading).toBeInTheDocument();
+  });
+  it('Home renders a heading nested', () => {
+    render(<Home />);
+
+    const main = screen.getByRole('main');
+
+    getByRole(main, 'heading', {
+      name: 'A great framework'
+    });
   });
 });
